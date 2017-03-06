@@ -1,0 +1,21 @@
+<div class="inner-container">
+	<div class="box box-50 altbox">
+		<div class="boxin">
+			<div class="header">
+				<h3>Delete Stc Lab</h3>
+			</div>
+			<form action="<?php echo $this->url(array('action'=>'delete')); ?>" method="post">
+                            <div>
+                                <br/>
+                                <p>Are you sure that you want to delete 
+  '<?php echo $this->escape($this->data['title']); ?>'?
+                                </p>
+                                <br/>
+                              <input type="hidden" name="id" value="<?php echo $this->data['id']; ?>" />
+                              <input class="button altbutton" type="submit" name="del" value="Yes" />
+                              <input class="button altbutton" type="submit" name="del" value="No" />
+                            </div>
+                        </form>
+		</div>
+	</div>
+</div>

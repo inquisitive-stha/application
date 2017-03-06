@@ -1,0 +1,137 @@
+<?php $urlx = $this->baseUrl() . '/Admin/stclab/list'; ?>
+<div class="inner-container">
+    <div class="box box-100 altbox">
+        <div class="boxin">
+            <div class="header">
+                <h3>List STC Lab</h3>
+                <a class="button" href="<?php echo $this->url(array('controller' => 'stclab', 'action' => 'add')); ?>">
+                    Add New&nbsp;&raquo;
+                </a>
+                <a class="button" href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$this->baseUrl()."/Admin/index"; ?>">
+                    &laquo;&nbsp;Back
+                </a>
+                <ul>
+                    <li><a rel="box1-tabular" href="#" class="active">list view</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="plain">
+                    <table cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Title</th>
+                                <th>Video Link</th>
+                                <th>Banner Image</th>
+                                <th>in Slider?</th>
+                                <th>in Homepage?</th>
+                                <th>Actions</th>
+                                
+
+                            </tr>
+                        </thead>
+                        <?php
+                        $count = 0;
+						//p($this->paginator);exit();
+                        foreach ($this->paginator as $p) {
+														
+                        ?>
+                            <tr class="first <?php echo (($count++) % 2 == 0) ? 'even' : ''; ?>">
+                                <td>
+                                    <?php echo $this->escape($p->ordering); ?>
+                                </td>
+                                <td>
+                                    <?php echo $this->escape($p->title); ?>
+                                </td>
+                                <td>
+                                    <a href="<?php echo $this->escape($p->video_link); ?>" target="_blank">
+                                        Click to View
+                                    </a>
+                                </td>
+                                <td>
+                                    <?php
+                                    if(trim($p->banner_image_file) == '')
+                                    {
+                                        $p->banner_image_file = $this->baseUrl().'/images/no-image.png';
+                                    }
+                                    else {
+                                        $p->banner_image_file = $this->baseUrl().'/public/uploads/stclab/'.$this->escape($p->banner_image_file);
+                                    }
+                                    ?>
+                                    <a class="m_image" href="<?php echo $this->escape($p->banner_image_file); ?>">
+                                    <img height="100" src="<?php echo $this->escape($p->banner_image_file); ?>" />                                    
+                                    </a>
+                                </td>
+                                <td>
+                                    
+                                    <?php 
+                                    if($this->escape($p->publish_to_banner) == '1')
+                                    {
+                                        ?>
+                                         <a href="<?php echo $urlx.'/unpublish/'.$p->id;?>">
+                                            <img alt="unpublish" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/publish_g.png" />
+                                        </a>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                         <a href="<?php echo $urlx.'/publish/'.$p->id; ?>">
+                                            <img alt="publish" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/publish_x.png" />
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
+                                
+                                <td>
+                                    
+                                    <?php 
+                                    if($this->escape($p->show_in_homepage) == '1')
+                                    {
+                                        ?>
+                                         <a href="<?php echo $urlx.'/unpublishhomepage/'.$p->id;?>">
+                                            <img alt="unpublish" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/publish_g.png" />
+                                        </a>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                         <a href="<?php echo $urlx.'/publishhomepage/'.$p->id; ?>">
+                                            <img alt="publish" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/publish_x.png" />
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
+
+                            <td>
+                                    <a class="ico" href="<?php echo $this->url(array('controller' => 'stclab', 'action' => 'edit', 'id' => $p->id )); ?>">
+                                    <img alt="edit" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/pencil.png" />
+                                    </a>
+                                        &nbsp;&nbsp;
+                                    <a class="ico" href="<?php echo $this->url(array('controller' => 'stclab', 'action' => 'delete', 'id' => $p->id )); ?>">
+                                    <img alt="delete" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/delete.png" />
+                                    </a>
+
+
+                            </td>
+    
+                        </tr>
+<?php
+                            }
+?>
+                    </table>
+                </div>
+<?php echo $this->paginator; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+	$(".m_image").fancybox();	
+    });
+</script>

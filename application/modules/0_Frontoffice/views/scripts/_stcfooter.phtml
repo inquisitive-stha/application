@@ -1,0 +1,27 @@
+<?php $this->placeholder('stcfooter')->captureStart() ?>
+<!-- Footer Section Start-->
+
+<footer>
+  <div class="footer-sec">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-md-4 footer-line">
+          <h4>Our Events</h4>
+          <a href="<?php echo $this->baseUrl(); ?>/event/upcoming">Coming Events </a> 
+          <a href="<?php echo $this->baseUrl(); ?>/event/previous">Previous Events</a> 
+          <a href="<?php echo $this->baseUrl(); ?>/stclab">STC Lab</a> </div>
+        <div class="col-sm-4 col-md-4 footer-line">
+          <h4>Social media</h4>
+          <a href="<?php echo $this->fb_link; ?>" target="_blank">Facebook</a> 
+          <a href="<?php echo $this->soundcloud_link; ?>" target="_blank"><img src="<?php echo $this->baseUrl(); ?>/images/soundcloud.jpg" width="182" height="45" alt="sound" border="0"></a> </div>
+        <div class="col-sm-4 col-md-4 y-padding-50"> <a href="<?php echo $this->baseUrl(); ?>/">
+                <img src="<?php echo $this->baseUrl(); ?>/public/uploads/stcmedia/<?php echo $this->footer_logo; ?>" width="173" height="45" border="0" alt="logo">
+            </a>
+          <p><?php echo $this->copyright_text; ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer Section End--> 
+<?php $this->placeholder('stcfooter')->captureEnd() ?>

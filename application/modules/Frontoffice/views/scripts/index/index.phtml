@@ -1,0 +1,266 @@
+<?php
+if(trim($this->sound_file))
+{
+?>
+    <audio autoplay>
+        <source src="public/uploads/stcmedia/<?php echo $this->sound_file; ?>">
+    </audio>
+<?php
+}
+?>
+
+<!-- video start -->
+<div class="container-fluid xblack">
+    <div id="vx_container">
+        <video id="video1" class="img-responsive">
+            <source src="public/uploads/stcmedia/<?php echo $this->video_file; ?>"/>
+        </video>
+        <span class="mvideo_button btn" onclick="playPause()">
+            <i class="fa fa-play-circle"></i>
+        </span>
+    </div>
+</div>
+<script type="text/javascript"> 
+var myVideo = document.getElementById("video1"); 
+
+myVideo.onended = function(e) {
+        $('.mvideo_button').html('<i class="fa fa-play-circle"></i>');
+        $('.mvideo_button').fadeIn('slow');
+    };
+
+function playPause() { 
+    if (myVideo.paused) 
+    {
+        $('.mvideo_button').html('<i class="fa fa-pause-circle"></i>');
+        myVideo.play(); 
+        $('.mvideo_button').fadeOut('slow');
+    }
+    else
+    {
+        $('.mvideo_button').html('<i class="fa fa-play-circle"></i>');
+        myVideo.pause(); 
+    }
+}
+</script> 
+<!-- video end --> 
+
+<!-- about section start -->
+<section class="about-sec col-md-12">
+    <div class="container">
+        <h2><?php echo $this->about->title; ?> <span></span></h2>
+        <div class="abt-bg-area"> <img src="public/uploads/stcmedia/<?php echo $this->homepage_bg; ?>"  class="abt-bg-img" alt="abtbg">
+            <div class=" pos_abs">
+                <div class="col-xs-12 col-lg-8">
+                    <?php
+                    $arx = explode(" ", $this->about->description);
+                    $arx = array_slice($arx, 0, 50);
+                    echo implode(" ", $arx) . '...';
+                    ?>
+                    <div class="readmore y-padding-50"><a href="<?php echo $this->baseUrl() . '/content/index/id/' . $this->about->id; ?>" class="button black">Read More</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- about section end --> 
+
+<!-- main section start -->
+
+<section class="events-sec col-md-12"> 
+
+    <!-- events section start -->
+    <div class="container" id="events">
+        <h2>Our Events <span></span></h2>
+        <?php
+        foreach ($this->events as $k => $v) {
+            ?>
+            <div class="event-red-sec">
+                <div class="row col-sm-4 col-md-4 text-center">
+                    <?php 
+                    if(trim($v->homepage_image) == '')
+                    {
+                        $v->homepage_image = $this->baseUrl().'/images/no-image.png';
+                    }
+                    else
+                    {
+                        $v->homepage_image = $this->baseUrl().'/public/uploads/stcevent/'.$v->homepage_image;
+                    }
+                    ?>
+                    <img style="height: 200px; display: inline;" src="<?php echo $v->homepage_image; ?>"  class="img-responsive" alt="<?php echo $v->title; ?>">
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <div class="col-sm-8 col-md-8"> 
+
+                        <?php
+                        $t = strtotime($v->c_date);
+                        $dte = date("d F Y", $t);
+                        ?>
+
+                        <span><?php echo $dte; ?></span>
+                        <h3><a href="#"><?php echo $v->title; ?></a></h3>
+                        <p><?php echo $v->description; ?></p>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="btm-sec-block" style="padding-top: 5px;"> 
+                            <?php
+                            if(trim($v->teaser_link) != '')
+                            {
+                                ?>
+                                <a href="<?php echo $v->teaser_link; ?>" class="button black red">TEASER</a> 
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            if(trim($v->ticket_link) != '')
+                            {
+                                ?>
+                                <a href="<?php echo $v->ticket_link; ?>" class="button black red">TICKET</a> 
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            if(trim($v->show_page_link) != '')
+                            {
+                                ?>
+                                <a href="<?php echo $v->show_page_link; ?>" class="button black red">SHOW PAGE</a> 
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            if(trim($v->after_movie_link) != '')
+                            {
+                                ?>
+                                <a href="<?php echo $v->after_movie_link; ?>" class="button black red">AFTER MOVIE</a> 
+                                <?php
+                            }
+                            ?>
+                           </div> 
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+        <div class="view-more"><a href="<?php echo $this->baseUrl(); ?>/event">view more</a></div>
+    </div>
+    <!-- events section end --> 
+
+    <!-- artists section start -->
+
+     <div class="container" id="artists">
+        <h2>Our Artists <span></span></h2>
+        <?php
+        foreach ($this->artist as $k => $v) {
+        ?>
+        <?php 
+         $imgs = array();
+          if(trim($v->image_file) == '')
+          {
+              $v->image_file = $this->baseUrl().'/images/no-image.png';
+          }
+          else
+          {
+              $v->image_file = $this->baseUrl().'/public/uploads/stcartist/'.$v->image_file;
+          }
+          $imgs[] = $v->image_file;
+          
+          if(trim($v->image_file_2) != '')
+          {
+              $imgs[] = $this->baseUrl().'/public/uploads/stcartist/'.$v->image_file_2;
+          }
+          if(trim($v->image_file_3) != '')
+          {
+              $imgs[] = $this->baseUrl().'/public/uploads/stcartist/'.$v->image_file_3;
+          }
+          ?>
+        <div class="artists-grey-sec">
+            <div class="row col-sm-4 col-md-4 text-center mslick">
+                <?php
+                foreach($imgs as $ki => $vi)
+                {
+                    ?>
+                    <div>
+                       <img style="height:200px; display: inline;" src="<?php echo $vi; ?>"  class="img-responsive" alt="<?php echo $vi->title; ?>">
+                   </div>
+                    <?php
+                }
+                ?>
+                
+            </div>
+            <div class="col-sm-8 col-md-8">
+                <div class="col-sm-8 col-md-8">
+                    <h3><a href="<?php echo $this->baseUrl() . '/artist/single/id/'.$v->id; ?>"><?php echo $v->title; ?></a></h3>
+                    <p><?php echo $v->description; ?></p>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <div class="btm-sec-booking" style="padding-top: 50px;"> 
+                        <a href="<?php echo $this->baseUrl(); ?>/booking/index/id/<?php echo $v->id; ?>" class="button grey">BOOK NOW</a> 
+                        <br/>
+                        <a href="<?php echo $this->baseUrl() . '/artist/single/id/'.$v->id; ?>" class="button grey">MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <?php
+        }
+        ?>
+
+        <div class="view-more"><a href="<?php echo $this->baseUrl(); ?>/artist">view more</a></div>
+    </div>
+
+    <!-- artists section end --> 
+
+    <!-- stc lab section start -->
+
+    <div class="container" id="stclab">
+        <h2>STC LAB <span></span></h2>
+
+        <?php
+        foreach ($this->stclab as $k => $v) {
+        ?>
+            <div class="event-red-sec">
+                <div class="row col-sm-4 col-md-4">
+                    <div class="videoWrapper">
+                        <iframe width="300" height="200" src="<?php echo $v->video_link; ?>" frameborder="0" allowfullscreen></iframe></div>
+            </div>
+            <div class="col-sm-8 col-md-8">
+                <div class="col-sm-8 col-md-8"> 
+                <?php
+                $t = strtotime($v->c_date);
+                $dte = date("d F Y", $t);
+                ?>
+                <span><?php echo $dte; ?></span>
+                    <h3><a href="#"><?php echo $v->title; ?> </a></h3>
+                    <p><?php echo $v->description; ?></p>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <div class="btm-sec-booking"> <a target="_blank" href="<?php echo $v->watch_it_link; ?>" class="button black red">WATCH IT</a> </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        <div class="view-more"><a href="<?php echo $this->baseUrl(); ?>/stclab">view more</a></div>
+    </div>
+
+    <!-- stc lab section end --> 
+
+</section>
+
+
+<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/js/slick/slick.css"/>
+<script src="<?php echo $this->baseUrl();?>/js/slick/slick.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.mslick').slick({
+            autoplay: true,
+            autoplaySpeed: <?php echo $this->IMAGE_CHANGE_TIMEOUT*1000; ?>,
+            arrows: false,
+            fade: true,
+            infinite: true,
+            adaptiveHeight: true
+        });
+    });
+</script>

@@ -1,0 +1,108 @@
+
+
+<!-- banner section start -->
+
+<div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <?php
+        foreach($this->banner as $k => $v)
+        {
+            ?>
+            <li index_num="<?php echo $k; ?>" class="a_click item<?php echo $v->id; ?> <?php echo ($k == 0)?'active':''; ?>"></li>
+            <?php
+        }
+        ?>      
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+       <?php
+        foreach($this->banner as $k => $v)
+        {
+            ?>
+
+      <div class="item <?php echo ($k == 0)?'active':''; ?>"> 
+        <img src="public/uploads/stclab/<?php echo $v->banner_image_file;?>" class="banner-img" alt="<?php echo $v->title; ?>">
+        <div class="carousel-caption">
+          <div class="banner-txt"><?php echo $v->title; ?></div>
+          <p><?php echo $v->description; ?></p>
+        </div>
+      </div>
+
+      
+      
+        <?php
+        }
+        ?>
+
+
+      
+  
+    </div>
+
+  </div>
+
+<!-- banner section end --> 
+
+<script>
+$(document).ready(function(){
+    // Activate Carousel
+    $("#myCarousel").carousel();   
+    
+    
+    $('.a_click').click(function(){
+        n = $(this).attr('index_num');
+        n = Number(n);
+        $("#myCarousel").carousel(n);
+    });
+   
+});
+</script> 
+
+
+
+<!-- main section start -->
+
+<section class="events-sec"> 
+  
+  <!-- events section start -->
+  <div class="container">
+    <h2>STC LAB <span></span></h2>
+    
+        <?php foreach($this->stclab as $k=>$v)
+        {
+        ?>
+   
+    <div class="event-red-sec">
+      <div class="row col-sm-4 col-md-4">
+        <div class="videoWrapper"><iframe width="300" height="200" src="<?php echo $v->video_link?>" frameborder="0" allowfullscreen></iframe></div>
+      </div>
+      <div class="col-sm-8 col-md-8">
+        <div class="col-sm-8 col-md-8">
+            
+           <?php
+            $t = strtotime($v->c_date);
+            $dte = date("d F Y", $t);
+            ?>
+         <span><?php echo $dte; ?></span>
+          <h3><a href="#"></a><?php echo $v->title?></h3>
+          <p><?php echo $v->description?></p>
+        </div>
+        <div class="col-sm-4 col-md-4">
+          <div class="btm-sec-booking"> <a href="<?php echo $v->watch_it_link?>"  target="_blank" class="button black red">WATCH IT</a> </div>
+        </div>
+      </div>
+    </div>
+    <?php
+        }
+     ?>
+    
+
+      
+      
+  <!-- events section end --> 
+  
+ 
+  
+</section>

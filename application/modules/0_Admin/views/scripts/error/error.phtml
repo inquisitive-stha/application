@@ -1,0 +1,28 @@
+<div class="inner-container">
+	<div class="box box-100 altbox">
+		<div class="boxin">
+			<div class="header">
+				<h3>Error</h3>
+			</div>
+			<div class="content">
+				<div class="plain">
+                                        <table cellspacing="0">
+                                            <tr>
+                                                <td>
+                                                        Error <?php echo $this->code; ?>
+                                                        <?php echo $this->message; ?>
+                                                        <?php if (TRUE === DEBUG): ?>
+                                                                <hr />
+                                                                <?php print_r($this->stack_trace);?>
+                                                        <?php endif ?>
+                                                </td>
+                                            </tr>
+                                        </table>
+				</div>
+				<?php //echo $this->paginator; ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+

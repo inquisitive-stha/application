@@ -1,0 +1,51 @@
+<?php
+
+$menu = array(
+    /*'wmicompany' => array('image' => 'poll_icon2.png', 'title' => 'Companies', 'action' => 'list', 'info' => 'Companies'),
+    'wmilanguages' => array('image' => 'User-Group-icon.png', 'title' => 'Languages', 'action' => 'list', 'info' => 'Languages'),
+    'wmiresults' => array('image' => 'crosswordicon.png', 'title' => 'Results', 'action' => 'list', 'info' => 'Results'),
+    'wmismileys' => array('image' => 'icon_m.png', 'title' => 'Smileys', 'action' => 'list', 'info' => 'Smileys'),
+    'wmitranslations' => array('image' => 'numbers.png', 'title' => 'Translations', 'action' => 'list', 'info' => 'Translations'),
+    'wmilabels' => array('image' => 'clist.png', 'title' => 'Labels', 'action' => 'list', 'info' => 'Labels'),
+    'wmisearch' => array('image' => 'content.png', 'title' => 'Search Texts', 'action' => 'list', 'info' => 'Search Texts'),
+    'wmicomment' => array('image' => 'testimonials.png', 'title' => 'User Comments', 'action' => 'list', 'info' => 'User Comments'),
+    'students' => array('image' => 'customers.png', 'title' => 'Students', 'action' => 'list', 'info' => 'Manage Student'),*/
+	    'stclab' => array('image' => 'features.png', 'title' => 'Lab', 'action' => 'list', 'info' => 'Lab'),
+    'stcsettings' => array('image' => 'engines.png', 'title' => 'Settings', 'action' => 'list', 'info' => 'Settings'),
+	'stcevent' => array('image' => 'time.png', 'title' => 'Events', 'action' => 'list', 'info' => 'Events'),
+	'stcartist' => array('image' => 'customers.png', 'title' => 'Artists', 'action' => 'list', 'info' => 'Artists'),
+    'stccms' => array('image' => 'clist.png', 'title' => 'Content ', 'action' => 'list', 'info' => 'Content'),
+    'stcbooking' => array('image' => 'years.png', 'title' => 'Booking', 'action' => 'list', 'info' => 'Booking'),
+    'stcmedia' => array('image' => 'icon_m.png', 'title' => 'Media', 'action' => 'list', 'info' => 'Media')
+);
+
+
+function doesExist($page, $arr)
+{
+    $storage = new Zend_Auth_Storage_Session();
+    $data = $storage->read();
+    return in_array($page, $arr[$data['user_type']]);
+}
+?>
+<div class="inner-container">
+	<div class="box box-100 altbox">
+            <?php
+            //
+            //print_r($this->access_array);exit;
+            foreach($menu as $k => $v)
+            {
+                //if(doesExist($k, $this->access_array))
+                {
+                ?>
+                <div class="single_icon <?php echo $k; ?>">
+                   <a class="h-ico ico-edit" href="<?php echo $this->url(array('controller' => $k, 'action' => $v['action'])); ?>">
+                        <img src="<?php echo $this->baseUrl(); ?>/css/admin/img/<?php echo $v['image']; ?>" alt="<?php echo $v['title']; ?>" title="<?php echo $v['title']; ?>"/>
+                    </a>
+                    <span><?php echo $v['info']; ?></span>
+                </div>
+                <?php
+                }
+            }
+            ?>
+	</div>
+</div>

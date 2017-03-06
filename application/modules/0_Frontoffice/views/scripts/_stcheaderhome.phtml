@@ -1,0 +1,30 @@
+<?php $this->placeholder('stcheaderhome')->captureStart() ?>
+<!-- header section start -->
+
+<header>
+  <div class="header-bg-top navbar-fixed-top">
+    <div class="container">
+      <div class="row">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a href="<?php echo $this->baseUrl(); ?>/" class="navbar-brand">
+                <img src="<?php echo $this->baseUrl(); ?>/public/uploads/stcmedia/<?php echo $this->header_logo; ?>" alt="STC" border="0" class="img-responsive"> 
+            </a> </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="navbar-right nav navbar-nav">
+              <li><a href="#home" class="<?php echo ($_SERVER['REQUEST_URI'] == '/wmi/')?'active':'';?>">home</a></li>
+              <li><a href="#events" class="<?php echo (strstr($_SERVER['REQUEST_URI'], 'event'))?'active':'';?>">events</a></li>
+              <li><a href="#artists" class="<?php echo (strstr($_SERVER['REQUEST_URI'], 'artist'))?'active':'';?>">artists</a></li>
+              <li><a href="#stclab" class="<?php echo (strstr($_SERVER['REQUEST_URI'], 'stclab'))?'active':'';?>">stc Lab</a></li>
+              <li><a href="<?php echo $this->baseUrl(); ?>/booking" class="<?php echo (strstr($_SERVER['REQUEST_URI'], 'booking'))?'active':'';?>">booking </a></li>
+              <li><a href="<?php echo $this->baseUrl(); ?>/contact" class="<?php echo (strstr($_SERVER['REQUEST_URI'], 'contact'))?'active':'';?>">contact Us</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- header section end --> 
+<?php $this->placeholder('stcheaderhome')->captureEnd() ?>

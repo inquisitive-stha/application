@@ -1,0 +1,52 @@
+<?php echo $this->doctype(); ?>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+
+<head>
+
+
+	<?php echo $this->headMeta(); ?>
+
+
+	<?php echo $this->headTitle(); ?>
+
+
+	<?php echo $this->headStyle(); ?>
+
+
+	<?php echo $this->headLink(); ?>
+
+
+	<script type="text/javascript" src="<?php echo $this->baseUrl().'/js/jquery.min.js' ;?>"></script>
+
+
+	<?php echo $this->headScript(); ?>
+
+
+</head>
+
+
+<body id="login">
+
+
+	<div class="box box-50 altbox login_form">
+
+
+		<div class="boxin">
+
+
+			<?php echo $this -> layout () -> content; ?>
+
+
+		</div>
+
+
+	</div>
+
+
+</body>
+
+
+</html>

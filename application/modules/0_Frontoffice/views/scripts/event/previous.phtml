@@ -1,0 +1,112 @@
+
+<div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <?php
+        foreach($this->banner as $k => $v)
+        {
+            ?>
+            <li index_num="<?php echo $k; ?>" class="a_click item<?php echo $v->id; ?> <?php echo ($k == 0)?'active':''; ?>"></li>
+            <?php
+        }
+        ?>      
+    
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <?php
+        foreach($this->banner as $k => $v)
+        {
+            ?>
+        
+            <div class="item <?php echo ($k == 0)?'active':''; ?>"> 
+                <img src="<?php echo $this->baseUrl(); ?>/public/uploads/stcevent/<?php echo $v->slider_image; ?>" class="banner-img" alt="<?php echo $v->title; ?>">
+                <div class="carousel-caption">
+                  <div class="banner-txt"><?php echo $v->title; ?></div>
+                  <p><?php echo $v->description; ?></p>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+           
+  
+    </div>
+
+  </div>
+
+<!-- banner section end --> 
+<script>
+$(document).ready(function(){
+    // Activate Carousel
+    $("#myCarousel").carousel();   
+    
+    
+    $('.a_click').click(function(){
+        n = $(this).attr('index_num');
+        n = Number(n);
+        $("#myCarousel").carousel(n);
+    });
+   
+});
+</script> 
+
+
+<!-- main section start -->
+
+<section class="events-sec"> 
+  
+ 
+      <div class="container">
+    <h2>previous SHOWS<span></span></h2>
+    
+    <?php
+    foreach($this->previous as $k => $v)
+    {
+    ?>
+    <div class="event-red-sec-detail">
+      <div class="row col-sm-9 col-md-9"><img src="<?php echo $this->baseUrl(); ?>/public/uploads/stcevent/<?php echo $v->event_page_image; ?>"  class="img-responsive" alt="<?php echo $v->title; ?>"></div>
+      <div class=" col-sm-3 col-md-3">
+      <div class="btm-sec-block"> 
+          <?php
+            if(trim($v->teaser_link) != '')
+            {
+                ?>
+                <a target="_blank" href="<?php echo $v->teaser_link; ?>" class="button black red">TEASER</a> 
+                <?php
+            }
+            ?>
+            <?php
+            if(trim($v->after_movie_link) != '')
+            {
+                ?>
+                <a target="_blank" href="<?php echo $v->after_movie_link; ?>" class="button black red">AFTER MOVIE</a>
+                <?php
+            }
+            ?>
+            <?php
+            if(trim($v->show_page_link) != '')
+            {
+                ?>
+                <a target="_blank" href="<?php echo $v->show_page_link; ?>" class="button black red">SHOW PAGE</a>
+                <?php
+            }
+            ?>
+      </div>
+      </div>      
+    </div>
+    <?php
+    }
+    ?>
+    
+    
+<!--    <div class="view-more"><a href="#">view more</a></div>-->
+  </div>
+  <!-- events section end --> 
+  
+ 
+  
+</section>
+<!-- main section end --> 
+

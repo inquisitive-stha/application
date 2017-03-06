@@ -1,0 +1,19 @@
+<div class="inner-container">
+	<div class="box box-50 altbox">
+		<div class="boxin">
+			<div class="header">
+				<h3>Edit User</h3>
+			</div>
+                     <?php
+                            if(isset($this->message))
+                            {
+                         ?>
+                            <h1 class="loginerror_msg"><?php echo $this->message; ?></h1>
+                            <?
+                            }
+
+                            ?>
+			<?php echo $this->form; ?>
+		</div>
+	</div>
+</div>

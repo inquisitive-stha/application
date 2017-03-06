@@ -1,0 +1,58 @@
+<?php $urlx = $this->baseUrl() . '/Admin/stcsettings/list'; ?>
+<div class="inner-container">
+    <div class="box box-100 altbox">
+        <div class="boxin">
+            <div class="header">
+                <h3>Site Settings</h3>
+                <a class="button" href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$this->baseUrl()."/Admin/index"; ?>">
+                    &laquo;&nbsp;Back
+                </a>
+                <ul>
+                    <li><a rel="box1-tabular" href="#" class="active">list view</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="plain">
+                    <table cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                                <th>Actions</th>
+                                
+
+                            </tr>
+                        </thead>
+                        <?php
+                        $count = 0;
+						//p($this->paginator);exit();
+                        foreach ($this->paginator as $p) {
+														
+                        ?>
+                            <tr class="first <?php echo (($count++) % 2 == 0) ? 'even' : ''; ?>">
+                                <td>
+                                    <?php echo $this->escape($p->key); ?>
+                                </td>
+                                <td>
+                                    <?php echo $this->escape($p->value); ?>
+                                </td>
+                               
+
+                            <td>
+                                    <a class="ico" href="<?php echo $this->url(array('controller' => 'stcsettings', 'action' => 'edit', 'id' => $p->id )); ?>">
+                                    <img alt="edit" src="<?php echo $this->baseUrl(); ?>/css/admin/img/led-ico/pencil.png" />
+                                    </a>
+
+                            </td>
+    
+                        </tr>
+<?php
+                            }
+?>
+                    </table>
+                </div>
+<?php echo $this->paginator; ?>
+            </div>
+        </div>
+    </div>
+</div>

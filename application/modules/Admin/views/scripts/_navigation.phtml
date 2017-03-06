@@ -1,0 +1,85 @@
+<?php $this->placeholder('navigation')->captureStart() ?>
+
+ <?php
+ 
+$menu = array(
+    'stclab' => array('image' => 'features.png', 'title' => 'Lab', 'action' => 'list', 'info' => 'Lab'),
+    'stcsettings' => array('image' => 'engines.png', 'title' => 'Settings', 'action' => 'list', 'info' => 'Settings'),
+	'stcevent' => array('image' => 'time.png', 'title' => 'Events', 'action' => 'list', 'info' => 'Events'),
+	'stcartist' => array('image' => 'customers.png', 'title' => 'Artists', 'action' => 'list', 'info' => 'Artists'),
+    'stccms' => array('image' => 'clist.png', 'title' => 'Content ', 'action' => 'list', 'info' => 'Content'),
+    'stcbooking' => array('image' => 'years.png', 'title' => 'Booking', 'action' => 'list', 'info' => 'Booking'),
+    'stcmedia' => array('image' => 'icon_m.png', 'title' => 'Media', 'action' => 'list', 'info' => 'Media')
+    
+);
+
+                //1 is super admin and 2 is admin
+$this->access_array = Array(
+        1 => Array('stclab', 'stcsettings', 'stcevent', 'stcartist', 
+            'stccms', 'stcbooking', 'stcmedia',
+            'Admin/index','wmicompany','wmilabels','wmilanguages','wmismileys','wmitranslations','wmiresults','smileys','camaroaxles','translations'),
+        2 =>  Array('Admin/index','access','cities','postcodes','rests','cms','news','cuisines','orders',
+            'customers','rloign','camaroyears')
+ );
+ ?>
+<?php
+function doesDashboardExist($page, $arr)
+{
+    $storage = new Zend_Auth_Storage_Session();
+    $data = $storage->read();
+    return in_array($page, $arr[$data['user_type']]);
+}
+?>
+<div class="inner-container clearfix">
+    <div id="h-wrap">
+        <div class="inner">
+            <?php
+            $storage = new Zend_Auth_Storage_Session();
+            $data = $storage->read();
+            if(count($data) > 0)
+            {
+    ?>
+            <h2>
+                <span class="h-ico ico-dashboard">
+                   
+                   <!-- <a href="<?php echo $this->url(array('controller' => 'Admin', 'action' => 'index')); ?>">-->
+                    <a href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$this->baseUrl()."/Admin/index"; ?>">
+                        <span>Dashboard</span>
+                    </a>
+                </span>
+                <span class="h-arrow"></span>
+            </h2>
+<?php
+}
+?>
+            <ul class="clearfix">
+<?php
+            //print_r($menu); exit();
+            foreach($menu as $k => $v)
+            {
+                if(doesDashboardExist($k, $this->access_array))
+                {
+                ?>
+                
+                <li class="rest_menu_list">
+                    <a class="h-ico icox-edit" href="<?php echo $this->serverUrl().$this->baseUrl('Admin/'.$k.'/list'); ?>">
+                        <img style="width: 24px; height: 24px;" src="<?php echo $this->baseUrl(); ?>/css/admin/img/<?php echo $v['image']; ?>" alt="<?php echo $v['title']; ?>" title="<?php echo $v['title']; ?>"/>
+                        <span><?php echo $v['info']; ?></span>
+                    </a>
+                </li>
+<?php
+                }
+            }
+            ?>
+            </ul>
+        </div>
+    </div>
+    <style type="text/css">
+        #nav .inner-container {
+          padding: 50px 0 25px;
+          position: relative;
+          z-index: 2;
+        }
+    </style>
+</div>
+<?php $this->placeholder('navigation')->captureEnd() ?>

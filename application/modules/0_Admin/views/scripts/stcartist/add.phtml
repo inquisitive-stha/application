@@ -1,0 +1,50 @@
+<div class="inner-container">
+
+
+	<div class="box box-50 altbox">
+
+
+		<div class="boxin">
+
+
+			<div class="header">
+
+
+				<h3>Add Artist</h3>
+
+
+			</div>
+
+
+			<?php echo $this->form; ?>
+
+
+		</div>
+
+
+	</div>
+
+
+</div>
+<style type="text/css">
+    form.basic textarea{
+        height: 90px;
+        width: 500px;
+    }
+    
+</style>
+<script type="text/javascript">
+tinyMCE.init({
+         height : 300,
+     mode : "exact",
+     elements: "long_description",
+     theme : "advanced",
+     plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+     theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+     theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,|,insertdate,inserttime,preview,|,forecolor,backcolor,hr",
+     theme_advanced_toolbar_location : "top",
+     theme_advanced_toolbar_align : "left",
+     theme_advanced_statusbar_location : "bottom",
+     theme_advanced_resizing : true
+  });
+</script>
